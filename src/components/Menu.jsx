@@ -1,58 +1,13 @@
-import { useState } from "react";
 import Card from "./Card";
 
 function Menu(props) {
-  const { dataMock, selectedItems, setSelectedItems } = props;
-  const [selectedId, setSelectedId] = useState(0);
-
-  const handleOpen = (itemId, setIsOpen) => {
-    // const isAlreadyAddItem = selectedItems.find()
-    // if()
-    setSelectedId(itemId);
-    setIsOpen(true);
-  };
-
-  const handleCount = () => {
-    setSelectedId(0);
-  };
-
-  const onAddToCart = (item) => {
-    const newSelected = [...selectedItems];
-    const addUpdateItem = newSelected.find((ele) => ele.id === item.id);
-    if (addUpdateItem) {
-      console.log("=======>>>", item.count);
-      addUpdateItem.count = item.count;
-      setSelectedItems(newSelected);
-    } else {
-      console.log("=======>>>1", item.count);
-
-      setSelectedItems([...selectedItems, { ...item, count: 1 }]);
-    }
-  };
-
-  const onRemoveFromCart = (item) => {
-    const oldSelected = [...selectedItems];
-    const removeUpdateItem = oldSelected.findIndex((ele) => ele.id === item.id);
-    if (removeUpdateItem !== -1) {
-      if (oldSelected[removeUpdateItem].count > 1) {
-        oldSelected[removeUpdateItem].count = item.count;
-      } else {
-        oldSelected.splice(removeUpdateItem, 1);
-      }
-      setSelectedItems(oldSelected);
-    }
-  };
-
-  const handleIncrement = (item) => {
-    onAddToCart(item);
-  };
-
-  const handleDecrement = (item, setIsOpen) => {
-    onRemoveFromCart(item);
-    if (item.count === 0) {
-      setIsOpen(false);
-    }
-  };
+  const {
+    dataMock,
+    selectedItems,
+    setSelectedItems,
+    onAddToCart,
+    onRemoveFromCart,
+  } = props;
 
   return (
     <div>
@@ -64,12 +19,12 @@ function Menu(props) {
           return (
             <Card
               key={items.id}
-              payload={items}
+              originData={items}
+              selectedItems={selectedItems}
+              setSelectedItems={setSelectedItems}
               actionButton={{
-                handleCount,
-                handleDecrement,
-                handleIncrement,
-                handleOpen,
+                onAddToCart,
+                onRemoveFromCart,
               }}
             />
           );

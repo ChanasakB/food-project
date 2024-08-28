@@ -1,31 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AbsoluteFirstButton from "./AbsoluteFirstButton";
 import AbsoluteSecondButton from "./AbsoluteSecondButton";
 
 function Card(props) {
-  const { payload, actionButton } = props;
-  const { handleCount, handleDecrement, handleIncrement, handleOpen } =
-    actionButton;
-  const { id, img, name, details, price } = payload;
+  const { originData, actionButton, selectedItems } = props;
+  const { onRemoveFromCart, onAddToCart } = actionButton;
+  const { id, img, name, details, price } = originData;
 
+  const [itemByIdState, setItemByIdState] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [count, setCount] = useState(0);
 
-  const leftButton = () => {
-    if (count > 0) {
-      const realCount = count - 1;
-      setCount(realCount);
-      handleDecrement({ ...payload, count: realCount }, setIsOpen);
+  useEffect(() => {
+    const findItem = selectedItems.find((ele) => ele.id === id);
+    setItemByIdState(findItem);
+    if (!findItem) {
+      setIsOpen(false);
     }
-  };
+  }, [id, selectedItems, setItemByIdState]);
 
-  const rightButton = () => {
-    if (count >= 0) {
-      const realCount = count + 1;
-      setCount(realCount);
-      handleIncrement({ ...payload, count: realCount }, setIsOpen);
-    }
-  };
+  // const handleIsOpen = () => {
+  //   if (itemByIdState && itemByIdState.count !== 0) {
+  //     console.log("===========", itemByIdState);
+  //     const changeTargetValue = selectedItems.filter(
+  //       (ele) => itemByIdState.id !== ele.id
+  //     );
+  //     setSelectedItems(changeTargetValue);
+  //     setIsOpen(false);
+  //   } else if (!itemByIdState) {
+  //     console.log("=======+>asdas");
+  //     setIsOpen(!isOpen);
+  //   }
+  // };
 
   return (
     <div className={`flex flex-col`}>
@@ -37,13 +42,12 @@ function Card(props) {
         />
         {isOpen ? (
           <AbsoluteSecondButton
-            handleCount={handleCount}
-            handleDecrement={() => leftButton()}
-            handleIncrement={() => rightButton()}
-            count={count}
+            handleDecrement={() => onRemoveFromCart(originData)}
+            handleIncrement={() => onAddToCart(originData)}
+            count={itemByIdState ? itemByIdState.count : 0}
           />
         ) : (
-          <AbsoluteFirstButton handleOpen={() => handleOpen(id, setIsOpen)} />
+          <AbsoluteFirstButton handleIsOpen={() => setIsOpen(!isOpen)} />
         )}
       </div>
       <div className={`w-[250px] py-[20px] flex flex-col justify-between`}>

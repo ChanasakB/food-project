@@ -18,8 +18,8 @@ function Basket(props) {
               <li>
                 <h3>{item.name}</h3>
                 <p className={`pt-[5px] flex gap-[15px]`}>
-                  {item.count}x <span>@${item.price.toFixed(2)}</span>{" "}
-                  <span>${(item.price * item.count).toFixed(2)}</span>
+                  {item.count}x <span>@${item.price?.toFixed(2)}</span>{" "}
+                  <span>${(item.price * item.count)?.toFixed(2)}</span>
                 </p>
               </li>
             </ul>

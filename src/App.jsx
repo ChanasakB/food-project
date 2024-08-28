@@ -80,11 +80,34 @@ const dataMock = [
 
 function App() {
   const [selectedItems, setSelectedItems] = useState([]);
-  const [countForButton, setCountForButton] = useState(0);
 
   const handleRemoveItem = (itemId) => {
     const updatedItems = selectedItems.filter((item) => item.id !== itemId);
     setSelectedItems(updatedItems);
+  };
+
+  const onAddToCart = (item) => {
+    const newSelected = [...selectedItems];
+    const addUpdateItem = newSelected.find((ele) => ele.id === item.id);
+    if (addUpdateItem) {
+      addUpdateItem.count++;
+      setSelectedItems(newSelected);
+    } else {
+      setSelectedItems([...selectedItems, { ...item, count: 1 }]);
+    }
+  };
+
+  const onRemoveFromCart = (item) => {
+    const oldSelected = [...selectedItems];
+    const removeUpdateItem = oldSelected.findIndex((ele) => ele.id === item.id);
+    if (removeUpdateItem !== -1) {
+      if (oldSelected[removeUpdateItem].count > 1) {
+        oldSelected[removeUpdateItem].count--;
+      } else {
+        oldSelected.splice(removeUpdateItem, 1);
+      }
+      setSelectedItems(oldSelected);
+    }
   };
 
   return (
@@ -95,8 +118,8 @@ function App() {
         dataMock={dataMock}
         selectedItems={selectedItems}
         setSelectedItems={setSelectedItems}
-        setCountForButton={setCountForButton}
-        countForButton={countForButton}
+        onAddToCart={onAddToCart}
+        onRemoveFromCart={onRemoveFromCart}
         handleRemoveItem={handleRemoveItem}
       />
       <Basket
