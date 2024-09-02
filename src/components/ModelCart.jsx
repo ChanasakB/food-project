@@ -12,21 +12,20 @@ const style = {
   overflowY: 'auto',
   height: '80%',
   '&::-webkit-scrollbar': {
-          width: '8px', // ความกว้างของแถบเลื่อน
+          width: '8px', 
         },
         '&::-webkit-scrollbar-track': {
-          backgroundColor: '#f1f1f1', // สีพื้นหลังของ track
+          backgroundColor: '#f1f1f1', 
         },
         '&::-webkit-scrollbar-thumb': {
-          backgroundColor: '#888', // สีของ thumb (ตัวแถบเลื่อน)
-          borderRadius: '10px', // ทำให้มุมของ thumb โค้งมน
+          backgroundColor: '#888', 
+          borderRadius: '10px', 
         },
         '&::-webkit-scrollbar-thumb:hover': {
-          backgroundColor: '#555', // สีของ thumb เมื่อ hover
+          backgroundColor: '#555', 
         },
-        border: '3px solid transparent', // ทำให้ border ของ Box เข้ากับ scrollbar
+        border: '3px solid transparent', 
         boxSizing: 'border-box',
-  
 };
 
 function ModelCart(props) {

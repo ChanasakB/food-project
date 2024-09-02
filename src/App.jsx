@@ -111,31 +111,6 @@ function App() {
     }
   };
  
-//   const getLocalStorage = () =>{
-//     const savedItem = localStorage.getItem('menu');
-//     if(savedItem) {
-//       setSelectedItems(JSON.parse(savedItem));
-//     } 
-// }
-// const { data } = useLocalStorage(
-//   "menu",
-//   selectedItems
-// )
-
-// useEffect(() => {
-//   setSelectedItems(data)
-// });
-
-// useEffect(() => {
-//   localStorage.setItem('menu',JSON.stringify(selectedItems));
-// },[selectedItems]);
-
-// useEffect(() => {
-//  const savedItem = localStorage.getItem('menu');
-//     if(savedItem) {
-//       setSelectedItems(JSON.parse(savedItem));
-//     } 
-// },[])
 
   return (
     <div className={`bg-cream`}>
