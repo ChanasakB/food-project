@@ -1,16 +1,20 @@
-import React from "react";
+import { useState } from 'react'
 
 function PlusIcon() {
+
+  const [isHovered, setIsHovered] = useState(false);
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="10"
-      height="10"
+      width="13"
+      height="13"
       fill="transparent"
       viewBox="0 0 10 10"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <path
-        fill="#fff"
+        fill={isHovered ? '#C83B0E' : 'white'}
         d="M10 4.375H5.625V0h-1.25v4.375H0v1.25h4.375V10h1.25V5.625H10v-1.25z"
       ></path>
     </svg>
