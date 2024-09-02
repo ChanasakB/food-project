@@ -20,11 +20,11 @@ function Card(props) {
 
   return (
     <div className={`flex flex-col`}>
-      <div className="relative w-[250px]">
+      <div className="relative sm:w-[325px] md:w-[270px] lg:w-[250px]">
         <img
           src={img}
           alt={name}
-          className={`w-[250px] h-[240px] bg-red rounded-xl `}
+          className={`sm:w-[325px] md:w-[270px] lg:w-[250px] sm:h-[210px] md:g-[225px] lg:h-[240px] bg-red rounded-xl `}
         />
         {isOpen ? (
           <AbsoluteSecondButton

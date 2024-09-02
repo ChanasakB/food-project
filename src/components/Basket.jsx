@@ -1,5 +1,6 @@
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import ModelCart from "./ModelCart";
+import EmptyCart from "./EmptyCart";
 
 function Basket(props) {
   const { selectedItems, handleRemoveItem, setSelectedItems } = props;
@@ -15,7 +16,7 @@ function Basket(props) {
 
   return (
     <div>
-      <div className={`bg-while w-[385px]  p-[25px]`}>
+      <div className={`bg-while sm:w-[325px] lg:w-[385px] md:w-[560px] md:m-auto p-[25px] rounded-lg`}>
         <h1 className={`text-[20px] text-orange font-bold font-redhat`}>
           Your Cart ({allCount})
         </h1>
@@ -42,11 +43,14 @@ function Basket(props) {
           </div>
         ))}
 
+        {selectedItems.length > 0 ?  <div>
         <div className={`flex justify-between pt-[15px] items-center`}>
           <h1>Order Total</h1>
           <h1 className={`font-bold text-[25px]`}>${totalPrice.toFixed(2)}</h1>
         </div>
         <ModelCart selectedItems={selectedItems} totalPrice={totalPrice} setSelectedItems={setSelectedItems}/>
+        </div> : <EmptyCart />}
+  
       </div>
     </div>
   );

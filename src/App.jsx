@@ -115,7 +115,7 @@ function App() {
   return (
     <div className={`bg-cream`}>
       <div
-      className={`w-[1440px] bg-cream m-auto px-[111px] flex pt-[95px] gap-[30px]`}
+      className={`sm:w-[375px] md:w-[700px] lg:w-[1440px] bg-cream m-auto sm:px-[25px] md:px-[50px] lg:px-[111px] sm:flex-col md:flex-col flex lg:flex-row pt-[95px] sm:gap-[10px] md:gap-[10px] lg:gap-[30px]`}
     >
       <Menu
         dataMock={dataMock}

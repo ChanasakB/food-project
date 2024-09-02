@@ -4,6 +4,7 @@ import Box from "@mui/material/Box";
 import { useState } from "react";
 import Comfirmed from "./icon/Comfirmed";
 
+
 const style = {
   position: "absolute",
   top: "50%",
@@ -30,6 +31,7 @@ const style = {
 
 function ModelCart(props) {
   const { selectedItems, totalPrice, setSelectedItems } = props;
+
   const [isOpenModel, setIsOpenModel] = useState(false);
   const handleOpen = () => setIsOpenModel(true);
   const handleClose = () => setIsOpenModel(false);
@@ -39,9 +41,10 @@ function ModelCart(props) {
 
   return (
     <div>
-      <div className={`flex flex-col gap-[20px] pt-[30px]`}>
+      {selectedItems.length > 0  && (
+        <div className={`flex flex-col gap-[20px] pt-[30px]`}>
         <button
-          className={`w-[340px] h-[50px] bg-cream rounded-lg flex justify-center items-center gap-[10px]`}
+          className={`sm:w-[280px] lg:w-[340px] h-[50px] bg-cream rounded-lg flex justify-center items-center gap-[10px]`}
         >
           <img
             src="/assets/images/carbonNeutral.svg"
@@ -55,7 +58,7 @@ function ModelCart(props) {
         </button>
         <button
           onClick={handleOpen}
-          className={`w-[340px] h-[50px] bg-orange text-while rounded-full hover:bg-brown`}
+          className={`sm:w-[280px] lg:w-[340px] h-[50px] bg-orange text-while rounded-full hover:bg-brown`}
         >
           Confirm Order
         </button>
@@ -127,6 +130,7 @@ function ModelCart(props) {
           </Box>
         </Modal>
       </div>
+      )}
     </div>
   );
 }
